@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MOTO — Shelly Mosman Photography</title>
+<meta name="description" content="Motorcycle photography by Shelly Mosman. Fine art prints available for order.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #060606;
+  --off-black: #0c0c0c;
+  --warm-white: #f0ece4;
+  --cream: #e8e0d4;
+  --gold: #b8965a;
+  --gold-light: #d4aa6e;
+  --gold-dim: rgba(184,150,90,0.35);
+  --text-muted: rgba(240,236,228,0.55);
+  --text-faint: rgba(240,236,228,0.3);
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-dim) var(--black);
+}
+
+body {
+  background: var(--black);
+  color: var(--warm-white);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--black);
+}
+
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.4s, padding 0.4s;
+}
+
+nav.scrolled {
+  background: rgba(6,6,6,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 1rem 3rem;
+  border-bottom: 1px solid rgba(184,150,90,0.1);
+}
+
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--warm-white);
+  text-decoration: none;
+}
+
+.nav-brand em {
+  font-style: italic;
+  color: var(--gold-light);
+  font-weight: 300;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover { color: var(--gold-light); }
+.nav-links a:hover::after { width: 100%; }
+
+/* ─── HERO ─── */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(6,6,6,0.3) 0%, rgba(6,6,6,0.6) 50%, var(--black) 100%);
+  z-index: 1;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  opacity: 0.35;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  animation: fadeUp 1s 0.3s forwards;
+}
+
+.hero-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(4rem, 10vw, 9rem);
+  font-weight: 300;
+  letter-spacing: 0.08em;
+  line-height: 0.9;
+  margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+}
+
+.hero-cta {
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  text-decoration: none;
+  border: 1px solid var(--gold-dim);
+  padding: 0.9rem 2.5rem;
+  transition: all 0.3s;
+}
+
+.hero-cta:hover {
+  background: rgba(184,150,90,0.1);
+  border-color: var(--gold);
+}
+
+/* ─── SECTION HEADERS ─── */
+.section-header {
+  margin-bottom: 2.5rem;
+}
+
+.section-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+/* ─── GALLERY ─── */
+.gallery-section {
+  padding: 6rem 3rem;
+  background: var(--off-black);
+}
+
+.gallery-filters {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.filter-btn {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  background: transparent;
+  border: 1px solid rgba(184,150,90,0.12);
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  color: var(--gold-light);
+  border-color: var(--gold);
+  background: rgba(184,150,90,0.06);
+}
+
+.masonry {
+  columns: 4;
+  column-gap: 10px;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  display: block;
+}
+
+.masonry-item img {
+  width: 100%;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.6s;
+}
+
+.masonry-item:hover img {
+  transform: scale(1.03);
+}
+
+.masonry-item .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(6,6,6,0.7) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+.masonry-item:hover .overlay {
+  opacity: 1;
+}
+
+.overlay .shoot-name {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+
+.overlay .order-hint {
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+
+/* ─── LIGHTBOX ─── */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(6,6,6,0.96);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 2rem; right: 2rem;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: 'Jost', sans-serif;
+  transition: color 0.3s;
+  z-index: 201;
+}
+
+.lightbox-close:hover { color: var(--warm-white); }
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: 'Jost', sans-serif;
+  padding: 1rem;
+  transition: color 0.3s;
+  z-index: 201;
+}
+
+.lightbox-nav:hover { color: var(--warm-white); }
+.lightbox-prev { left: 1rem; }
+.lightbox-next { right: 1rem; }
+
+.lightbox-info {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.lightbox-info .shoot-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.lightbox-order-btn {
+  display: inline-block;
+  margin-top: 0.8rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  text-decoration: none;
+  border: 1px solid var(--gold-dim);
+  padding: 0.6rem 1.8rem;
+  transition: all 0.3s;
+  cursor: pointer;
+  background: none;
+}
+
+.lightbox-order-btn:hover {
+  background: rgba(184,150,90,0.1);
+  border-color: var(--gold);
+}
+
+/* ─── ORDER FORM ─── */
+.order-section {
+  padding: 6rem 3rem;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.order-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--warm-white);
+  background: rgba(240,236,228,0.04);
+  border: 1px solid rgba(184,150,90,0.15);
+  padding: 0.8rem 1rem;
+  transition: border-color 0.3s;
+  outline: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--gold);
+}
+
+.form-group select {
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23b8965a' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+}
+
+.form-group select option {
+  background: var(--off-black);
+  color: var(--warm-white);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.selected-image-preview {
+  display: none;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(184,150,90,0.15);
+  background: rgba(240,236,228,0.02);
+  margin-bottom: 0.5rem;
+}
+
+.selected-image-preview.visible {
+  display: flex;
+}
+
+.selected-image-preview img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+.selected-image-preview .image-id {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.selected-image-preview .image-shoot {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.submit-btn {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--gold);
+  border: none;
+  padding: 1rem 2.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  align-self: flex-start;
+}
+
+.submit-btn:hover {
+  background: var(--gold-light);
+}
+
+.form-success {
+  display: none;
+  padding: 1.5rem;
+  border: 1px solid var(--gold);
+  background: rgba(184,150,90,0.06);
+  text-align: center;
+}
+
+.form-success.visible {
+  display: block;
+}
+
+.form-success h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
+}
+
+.form-success p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ─── FOOTER ─── */
+footer {
+  padding: 3rem;
+  text-align: center;
+  border-top: 1px solid rgba(184,150,90,0.08);
+}
+
+footer p {
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: var(--text-faint);
+}
+
+footer a {
+  color: var(--gold);
+  text-decoration: none;
+}
+
+footer a:hover { color: var(--gold-light); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s, transform 0.6s;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1024px) {
+  .masonry { columns: 3; }
+}
+
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  nav.scrolled { padding: 0.8rem 1.5rem; }
+  .nav-links { gap: 1.5rem; }
+  .masonry { columns: 2; }
+  .gallery-section { padding: 4rem 1.5rem; }
+  .order-section { padding: 4rem 1.5rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-title { letter-spacing: 0.04em; }
+}
+
+@media (max-width: 480px) {
+  .masonry { columns: 1; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">Shelly Mosman <em>MOTO</em></a>
+  <ul class="nav-links">
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#order">Order Prints</a></li>
+    <li><a href="https://shellymosman.com">Main Site</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="thumbs/ducati/_20R9890.jpg" alt="" loading="eager">
+    <img src="thumbs/indian-ride/_20R2706.jpg" alt="" loading="eager">
+    <img src="thumbs/billy-hoffmeister/_20R2074.jpg" alt="" loading="eager">
+    <img src="thumbs/nick-bike-shop/_20R4237.jpg" alt="" loading="eager">
+  </div>
+  <div class="hero-content">
+    <p class="hero-label">Shelly Mosman Photography</p>
+    <h1 class="hero-title">MOTO</h1>
+    <p class="hero-subtitle">Machines, riders, and the stories between them</p>
+    <a href="#gallery" class="hero-cta">View the Collection</a>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="gallery-section">
+  <div class="section-header fade-in">
+    <p class="section-label">The Collection</p>
+    <h2 class="section-title">Motorcycle Photography</h2>
+  </div>
+  <div class="gallery-filters fade-in" id="filters"></div>
+  <div class="masonry" id="masonry"></div>
+</section>
+
+<!-- ORDER FORM -->
+<section id="order" class="order-section">
+  <div class="section-header fade-in">
+    <p class="section-label">Fine Art Prints</p>
+    <h2 class="section-title">Order a Print</h2>
+  </div>
+
+  <div class="selected-image-preview" id="selectedPreview">
+    <img id="previewImg" src="" alt="Selected image">
+    <div>
+      <p class="image-shoot" id="previewShoot"></p>
+      <p class="image-id" id="previewId"></p>
+    </div>
+  </div>
+
+  <form class="order-form fade-in" id="orderForm" action="https://formspree.io/f/placeholder" method="POST">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="imageSelect">Select Image</label>
+      <select id="imageSelect" name="image" required>
+        <option value="">Choose an image...</option>
+      </select>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="printSize">Print Size</label>
+        <select id="printSize" name="size" required>
+          <option value="">Choose a size...</option>
+          <option value="8x10">8 x 10"</option>
+          <option value="11x14">11 x 14"</option>
+          <option value="16x20">16 x 20"</option>
+          <option value="20x24">20 x 24"</option>
+          <option value="24x36">24 x 36"</option>
+          <option value="custom">Custom Size</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="medium">Print Medium</label>
+      <select id="medium" name="medium">
+        <option value="">Choose a medium...</option>
+        <option value="archival-paper">Archival Paper</option>
+        <option value="canvas">Gallery Canvas</option>
+        <option value="metal">Metal Print</option>
+        <option value="unsure">Not Sure — Advise Me</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="notes">Notes</label>
+      <textarea id="notes" name="notes" placeholder="Framing preferences, custom sizing, or anything else..."></textarea>
+    </div>
+
+    <input type="hidden" id="imageFolder" name="image_folder" value="">
+    <input type="hidden" id="imageFile" name="image_file" value="">
+
+    <button type="submit" class="submit-btn">Submit Print Request</button>
+  </form>
+
+  <div class="form-success" id="formSuccess">
+    <h3>Request Received</h3>
+    <p>Thanks for your interest. Shelly will follow up with pricing and details shortly.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 <a href="https://shellymosman.com">Shelly Mosman</a> &mdash; All images are protected by copyright.</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" aria-label="Close">&times;</button>
+  <button class="lightbox-nav lightbox-prev" aria-label="Previous">&lsaquo;</button>
+  <button class="lightbox-nav lightbox-next" aria-label="Next">&rsaquo;</button>
+  <img id="lightboxImg" src="" alt="Full size photograph">
+  <div class="lightbox-info">
+    <p class="shoot-label" id="lightboxLabel"></p>
+    <button class="lightbox-order-btn" id="lightboxOrder">Order This Print</button>
+  </div>
+</div>
+
+<script>
+const GALLERIES = {
+  "billy-hoffmeister": [
+    "_20R2007.jpg","_20R2014.2.jpg","_20R2014.jpg","_20R2017.jpg","_20R2047.jpg",
+    "_20R2074.jpg","_20R2104.jpg","_20R2122.jpg","_20R2140.jpg","_20R2173.jpg","dark2.jpg"
+  ],
+  "day-one": [
+    "_20R5800.jpg","_20R5828.jpg","_20R5847.jpg","_20R5852.jpg","_20R5873.jpg",
+    "_20R5877.jpg","_20R5881.jpg","_20R5885.jpg","_20R5901.jpg","_20R5931.jpg",
+    "_20R5950.jpg","_20R5962.jpg","_20R5989.jpg","_20R5990.jpg","_20R6012.jpg",
+    "_20R6049.jpg","_20R6073.jpg","_20R6075.jpg","_20R6105.jpg","_20R6112.jpg"
+  ],
+  "ducati": [
+    "_20R9815.jpg","_20R9816.jpg","_20R9829.jpg","_20R9840.jpg","_20R9841.jpg",
+    "_20R9864.2.jpg","_20R9864.jpg","_20R9883.2.jpg","_20R9890 copy.jpg",
+    "_20R9890.2.jpg","_20R9890.jpg","_20R9934.jpg","_20R9943.jpg","_20R9951.jpg",
+    "_20R9959.jpg","_20R9966.jpg","_20R9972.jpg","_20R9982.jpg","_20R9986.jpg","_20R9989.jpg"
+  ],
+  "indian-ride": [
+    "_20R2706.jpg","_20R2713.jpg","_20R2717.jpg","_20R2735.jpg","_20R2738.jpg",
+    "_20R2747.jpg","_20R2754.jpg","_20R2764.jpg","_20R2767.jpg","_20R2776.jpg",
+    "_20R2785.jpg","_20R2797.jpg","_20R2806.jpg","_20R2810.jpg","_20R2819.jpg",
+    "_20R2820.jpg","_20R2837.jpg","_20R2840.jpg","_20R2865.jpg","_20R2912.jpg",
+    "_20R2923.jpg","_S4G3090.jpg"
+  ],
+  "joes-bikes": ["_20R9500.2.jpg","_20R9500.jpg"],
+  "john-christenson": [
+    "_20R0008.jpg","_20R0030.jpg","_20R0035.3.jpg","_20R0045.jpg","_20R9983.jpg","_20R9992.jpg"
+  ],
+  "nick-bike-shop": [
+    "_20R4159.jpg","_20R4160.jpg","_20R4165.jpg","_20R4210.jpg","_20R4214.jpg",
+    "_20R4215.jpg","_20R4225.jpg","_20R4237.jpg","_20R4245.jpg","_20R4249.jpg"
+  ],
+  "rick": [
+    "_20R4275.jpg","_20R4299.jpg","_20R4380.jpg","_20R4433.2.jpg","_20R4433.jpg",
+    "_20R4459.jpg","_20R4473-2.jpg","_20R4473-3.jpg","_20R4474.jpg","_20R4504-4.jpg",
+    "_20R4513.jpg","_20R4527.jpg"
+  ],
+  "shawn-sheelys-yamaha": ["5x7.jpg","_20R1721.jpg","dark.jpg"]
+};
+
+const LABELS = {
+  "billy-hoffmeister": "Billy Hoffmeister",
+  "day-one": "Day One",
+  "ducati": "Ducati",
+  "indian-ride": "Indian Ride",
+  "joes-bikes": "Joe's Bikes",
+  "john-christenson": "John Christenson",
+  "nick-bike-shop": "Nick's Bike Shop",
+  "rick": "Rick",
+  "shawn-sheelys-yamaha": "Shawn Sheely's Yamaha"
+};
+
+// Build flat image array for lightbox navigation
+let allImages = [];
+for (const [folder, files] of Object.entries(GALLERIES)) {
+  for (const file of files) {
+    allImages.push({ folder, file, label: LABELS[folder] });
+  }
+}
+
+let currentFilter = 'all';
+let lightboxIndex = 0;
+let filteredImages = [...allImages];
+
+// ─── FILTERS ───
+const filtersEl = document.getElementById('filters');
+const allBtn = document.createElement('button');
+allBtn.className = 'filter-btn active';
+allBtn.textContent = 'All';
+allBtn.dataset.filter = 'all';
+filtersEl.appendChild(allBtn);
+
+for (const [slug, label] of Object.entries(LABELS)) {
+  const btn = document.createElement('button');
+  btn.className = 'filter-btn';
+  btn.textContent = label;
+  btn.dataset.filter = slug;
+  filtersEl.appendChild(btn);
+}
+
+filtersEl.addEventListener('click', (e) => {
+  if (!e.target.classList.contains('filter-btn')) return;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  e.target.classList.add('active');
+  currentFilter = e.target.dataset.filter;
+  renderGallery();
+});
+
+// ─── GALLERY RENDER ───
+const masonryEl = document.getElementById('masonry');
+
+function renderGallery() {
+  masonryEl.innerHTML = '';
+  filteredImages = currentFilter === 'all'
+    ? [...allImages]
+    : allImages.filter(img => img.folder === currentFilter);
+
+  filteredImages.forEach((img, idx) => {
+    const item = document.createElement('div');
+    item.className = 'masonry-item';
+    item.dataset.index = idx;
+    item.innerHTML = `
+      <img src="thumbs/${img.folder}/${encodeURIComponent(img.file)}" alt="${img.label} — ${img.file}" loading="lazy">
+      <div class="overlay">
+        <span class="shoot-name">${img.label}</span>
+        <span class="order-hint">Click to view &middot; Order print</span>
+      </div>
+    `;
+    item.addEventListener('click', () => openLightbox(idx));
+    masonryEl.appendChild(item);
+  });
+}
+
+renderGallery();
+
+// ─── LIGHTBOX ───
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxLabel = document.getElementById('lightboxLabel');
+
+function openLightbox(idx) {
+  lightboxIndex = idx;
+  updateLightbox();
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function updateLightbox() {
+  const img = filteredImages[lightboxIndex];
+  lightboxImg.src = `thumbs/${img.folder}/${encodeURIComponent(img.file)}`;
+  lightboxLabel.textContent = `${img.label} — ${img.file}`;
+}
+
+document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+document.querySelector('.lightbox-prev').addEventListener('click', () => {
+  lightboxIndex = (lightboxIndex - 1 + filteredImages.length) % filteredImages.length;
+  updateLightbox();
+});
+document.querySelector('.lightbox-next').addEventListener('click', () => {
+  lightboxIndex = (lightboxIndex + 1) % filteredImages.length;
+  updateLightbox();
+});
+
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) closeLightbox();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (!lightbox.classList.contains('active')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowLeft') {
+    lightboxIndex = (lightboxIndex - 1 + filteredImages.length) % filteredImages.length;
+    updateLightbox();
+  }
+  if (e.key === 'ArrowRight') {
+    lightboxIndex = (lightboxIndex + 1) % filteredImages.length;
+    updateLightbox();
+  }
+});
+
+// ─── LIGHTBOX ORDER BUTTON ───
+document.getElementById('lightboxOrder').addEventListener('click', () => {
+  const img = filteredImages[lightboxIndex];
+  closeLightbox();
+  selectImageForOrder(img.folder, img.file);
+  document.getElementById('order').scrollIntoView({ behavior: 'smooth' });
+});
+
+// ─── ORDER FORM ───
+const imageSelect = document.getElementById('imageSelect');
+for (const [folder, files] of Object.entries(GALLERIES)) {
+  const group = document.createElement('optgroup');
+  group.label = LABELS[folder];
+  for (const file of files) {
+    const opt = document.createElement('option');
+    opt.value = `${folder}/${file}`;
+    opt.textContent = `${LABELS[folder]} — ${file}`;
+    group.appendChild(opt);
+  }
+  imageSelect.appendChild(group);
+}
+
+imageSelect.addEventListener('change', () => {
+  const val = imageSelect.value;
+  if (!val) {
+    document.getElementById('selectedPreview').classList.remove('visible');
+    return;
+  }
+  const [folder, ...fileParts] = val.split('/');
+  const file = fileParts.join('/');
+  selectImageForOrder(folder, file);
+});
+
+function selectImageForOrder(folder, file) {
+  const val = `${folder}/${file}`;
+  imageSelect.value = val;
+  document.getElementById('imageFolder').value = folder;
+  document.getElementById('imageFile').value = file;
+
+  const preview = document.getElementById('selectedPreview');
+  document.getElementById('previewImg').src = `thumbs/${folder}/${encodeURIComponent(file)}`;
+  document.getElementById('previewShoot').textContent = LABELS[folder];
+  document.getElementById('previewId').textContent = file;
+  preview.classList.add('visible');
+}
+
+// Form submission
+document.getElementById('orderForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const data = new FormData(form);
+
+  fetch(form.action, {
+    method: 'POST',
+    body: data,
+    headers: { 'Accept': 'application/json' }
+  }).then(response => {
+    if (response.ok) {
+      form.style.display = 'none';
+      document.getElementById('formSuccess').classList.add('visible');
+    }
+  }).catch(() => {
+    alert('Something went wrong. Please email directly instead.');
+  });
+});
+
+// ─── NAV SCROLL ───
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ─── FADE-IN OBSERVER ───
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
